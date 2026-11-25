@@ -1,0 +1,2080 @@
+
+:root {
+    --background: #101b14;
+    --panel: #19291f;
+    --panel-light: #22372a;
+    --accent: #a8d58e;
+    --accent-dark: #52794b;
+    --white: #f5f7f2;
+    --muted: #aabbb0;
+    --border: rgba(255,255,255,.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--background);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    font-size: clamp(13px, 1.25vw, 23px);
+}
+
+button, a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    cursor: pointer;
+    font: inherit;
+}
+
+#deck {
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4.2vh 6vw 8vh;
+    gap: 1.7vh;
+    overflow-y: auto;
+    background:
+        radial-gradient(ellipse at 100% 0%,
+        rgba(81,119,75,.12), transparent 55%),
+        var(--background);
+}
+
+.slide.active {
+    display: flex;
+    animation: appear .3s ease-out;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2, h3, p {
+    margin: 0;
+}
+
+h2 {
+    font-size: clamp(32px, 4.2vw, 82px);
+    line-height: 1.08;
+    letter-spacing: -.045em;
+    font-weight: 700;
+    margin-bottom: 1.2vh;
+}
+
+h3 {
+    font-size: clamp(17px, 1.7vw, 32px);
+    line-height: 1.2;
+    margin-bottom: .7vh;
+}
+
+p {
+    line-height: 1.5;
+}
+
+em {
+    color: var(--accent);
+    font-style: normal;
+}
+
+small {
+    color: var(--muted);
+}
+
+.eyebrow, .label {
+    font-size: clamp(10px, .8vw, 15px);
+    letter-spacing: .16em;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+}
+
+.eyebrow {
+    margin-bottom: .5vh;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.lead {
+    font-size: 1.35em;
+    color: var(--muted);
+    max-width: 36em;
+}
+
+.source {
+    font-size: .66em;
+    color: var(--muted);
+    line-height: 1.45;
+    margin-top: .8vh;
+}
+
+.grid {
+    display: grid;
+    gap: 1.4vw;
+    align-items: stretch;
+}
+
+.two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.four {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2vw;
+    min-width: 0;
+}
+
+.panel p {
+    color: var(--muted);
+}
+
+.panel h3:not(:first-child) {
+    margin-top: 1.1vh;
+}
+
+.panel p + p {
+    margin-top: 1vh;
+}
+
+.accent-panel {
+    background: linear-gradient(140deg,
+        #263d2c, #19291f);
+    border-color: #58794f;
+}
+
+.compact .panel {
+    padding: 1.2vw 1.6vw;
+}
+
+.metric {
+    font-size: clamp(34px, 5vw, 100px);
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -.055em;
+    color: var(--accent);
+    margin: .5vh 0;
+}
+
+.metric span {
+    font-size: .4em;
+    letter-spacing: -.01em;
+}
+
+.metric.giant {
+    font-size: clamp(50px, 8vw, 150px);
+}
+
+.metric.price {
+    margin-top: 2vh;
+}
+
+.statement {
+    font-size: 2em;
+    font-weight: 600;
+    border-left: 4px solid var(--accent);
+    padding: 1.2vh 1.4vw;
+    margin: .6vh 0;
+}
+
+.statement.small {
+    font-size: 1.35em;
+    line-height: 1.4;
+}
+
+.pill {
+    display: inline-block;
+    color: var(--accent);
+    background: rgba(168,213,142,.08);
+    border: 1px solid rgba(168,213,142,.25);
+    border-radius: 30px;
+    padding: .6em 1em;
+    font-size: .72em;
+    margin-top: 1.4vh;
+}
+
+.step-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 1vh;
+}
+
+.cover {
+    text-align: center;
+    align-items: center;
+    background: #101b14;
+}
+
+.cover-top {
+    position: absolute;
+    top: 5vh;
+    left: 6vw;
+    font-size: .7em;
+    color: var(--muted);
+    letter-spacing: .2em;
+}
+
+.brand {
+    font-size: clamp(55px, 9vw, 170px);
+    letter-spacing: .11em;
+    line-height: 1.1;
+    margin: 1vh 0;
+}
+
+.brand span {
+    color: var(--accent);
+}
+
+.tagline {
+    color: var(--muted);
+    font-size: 1.45em;
+    max-width: 85%;
+}
+
+.cover-bottom {
+    position: absolute;
+    bottom: 9vh;
+    left: 6vw;
+    right: 6vw;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    font-size: .85em;
+    line-height: 1.7;
+}
+
+.cover-bottom > div:last-child {
+    text-align: right;
+}
+
+.closing-title {
+    font-size: clamp(65px, 8vw, 145px);
+}
+
+.closing-ask {
+    border: 1px solid var(--accent-dark);
+    border-radius: 6px;
+    padding: 1.2em 1.8em;
+    margin-top: 2vh;
+    color: var(--accent);
+}
+
+.distance-line {
+    height: 5px;
+    background: var(--accent);
+    width: 100%;
+    margin-top: 2vh;
+    border-radius: 4px;
+}
+
+.distance-line.short {
+    width: 12%;
+}
+
+.quote-mark {
+    font-family: Georgia, serif;
+    color: var(--accent);
+    font-size: 4em;
+    line-height: .8;
+}
+
+.quote {
+    font-size: 1.12em;
+    color: var(--white) !important;
+    margin: 1vh 0 2vh;
+}
+
+.horizontal-stat {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+    padding-top: 1vh;
+}
+
+.horizontal-stat p {
+    max-width: 34em;
+    color: var(--muted);
+}
+
+.product-layout {
+    align-items: center;
+}
+
+.product-visual {
+    text-align: center;
+}
+
+.product-visual img {
+    width: 100%;
+    max-height: 54vh;
+    object-fit: contain;
+}
+
+.feature-line {
+    display: flex;
+    gap: 1.2vw;
+    border-bottom: 1px solid var(--border);
+    padding: 1.3vh 0;
+    color: var(--accent);
+    font-size: .85em;
+}
+
+.feature-line span {
+    color: var(--white);
+    font-size: 1.15em;
+}
+
+.image-caption {
+    color: var(--muted);
+    font-size: .7em;
+    text-align: center;
+    margin-top: 1vh;
+}
+
+.comparison {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.comparison-row {
+    display: grid;
+    grid-template-columns: 1.1fr .65fr 1.5fr;
+    gap: 1vw;
+    align-items: center;
+    padding: 1.5vh 1.6vw;
+    border-bottom: 1px solid var(--border);
+}
+
+.comparison-row:last-child {
+    border-bottom: 0;
+}
+
+.table-head {
+    font-size: .75em;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+}
+
+.highlighted {
+    background: #304b33;
+    color: var(--accent);
+}
+
+.participation-bar {
+    display: flex;
+    height: 6vh;
+    border-radius: 7px;
+    overflow: hidden;
+    font-size: .85em;
+    font-weight: 700;
+}
+
+.participation-bar div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.on-course {
+    width: 60.5%;
+    background: var(--accent);
+    color: var(--background);
+}
+
+.off-course {
+    width: 39.5%;
+    background: #52794b;
+}
+
+.funnel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1vh;
+    justify-content: center;
+}
+
+.funnel-level {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: .5vh;
+    padding: 1.5vh .8vw;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+.funnel-level span {
+    font-size: .63em;
+    letter-spacing: .08em;
+}
+
+.funnel-level strong {
+    font-size: 2.1em;
+}
+
+.level-one {
+    width: 100%;
+    background: #294132;
+}
+
+.level-two {
+    width: 88%;
+    background: #35533a;
+}
+
+.level-three {
+    width: 76%;
+    background: #52794b;
+}
+
+.level-four {
+    width: 64%;
+    background: var(--accent);
+    color: var(--background);
+}
+
+.mini-chart {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 3vw;
+    padding-top: 3vh;
+    margin-top: 1vh;
+}
+
+.chart-column {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: center;
+}
+
+.chart-bar {
+    background: var(--accent-dark);
+    border-radius: 5px 5px 0 0;
+    position: relative;
+}
+
+.chart-column:last-child .chart-bar {
+    background: var(--accent);
+}
+
+.chart-bar span {
+    position: absolute;
+    top: -1.6em;
+    left: 0;
+    right: 0;
+    font-size: .75em;
+}
+
+.chart-column small {
+    margin-top: .6em;
+}
+
+.calculation {
+    font-size: .85em;
+    color: var(--accent);
+    margin-top: 1vh;
+}
+
+.formula, .process {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .7vw;
+    background: var(--panel);
+    padding: 1.5vw;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.formula span, .process span {
+    flex: 1;
+    text-align: center;
+    font-weight: 600;
+}
+
+.formula strong, .process b {
+    color: var(--accent);
+    font-size: 1.5em;
+}
+
+.finance-row, .test-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1vw;
+    padding: 1.5vh 0;
+    border-bottom: 1px solid var(--border);
+    font-size: .9em;
+}
+
+.finance-row strong, .test-row strong {
+    white-space: nowrap;
+    color: var(--accent);
+}
+
+.finance-row.total {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-top: 1vh;
+}
+
+.stacked-bar {
+    display: flex;
+    height: 4.5vh;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-top: 2vh;
+}
+
+.stacked-bar div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .75em;
+    font-weight: 700;
+}
+
+.cost-segment {
+    width: 43.333%;
+    background: #52675a;
+}
+
+.other-segment {
+    width: 13.334%;
+    background: #b4b6a4;
+    color: #101b14;
+}
+
+.profit-segment {
+    width: 43.333%;
+    background: var(--accent);
+    color: #101b14;
+}
+
+.legend {
+    display: flex;
+    justify-content: space-between;
+    gap: 1vw;
+    font-size: .65em;
+    color: var(--muted);
+    margin-top: 1vh;
+}
+
+.engineering-hero {
+    position: relative;
+    height: 47vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.engineering-hero img {
+    max-width: 78%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.engineering-label {
+    position: absolute;
+    font-size: .72em;
+    color: var(--accent);
+    padding: .7em 1em;
+    border-left: 2px solid var(--accent);
+    background: rgba(25,41,31,.9);
+    max-width: 24%;
+}
+
+.top-left { top: 8%; left: 0; }
+.bottom-left { bottom: 8%; left: 0; }
+.top-right { top: 8%; right: 0; }
+.bottom-right { bottom: 8%; right: 0; }
+
+.layer-diagram {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.6vh;
+    padding: 2vw;
+}
+
+.layer {
+    width: 100%;
+    min-height: 5.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 600;
+    font-size: .85em;
+    padding: .8em;
+    border-radius: 5px;
+    box-shadow: 0 6px 0 rgba(0,0,0,.25);
+}
+
+.turf {
+    background: #588b45;
+}
+
+.foam {
+    background: #303832;
+}
+
+.fastener {
+    background: #777e75;
+}
+
+.sensor-layer {
+    background: #355f38;
+    border: 1px solid var(--accent);
+}
+
+.base {
+    background: #1f2823;
+    border: 1px solid #718076;
+}
+
+.layer-diagram + div {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.layer-diagram + div .panel {
+    padding: 1.2vw;
+}
+
+.sensor-grid img {
+    width: 100%;
+    height: 23vh;
+    object-fit: contain;
+    margin-bottom: 1.5vh;
+}
+
+.controller-image img {
+    width: 100%;
+    height: 34vh;
+    object-fit: contain;
+}
+
+.controller-parts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+
+.component-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5vw;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2vw;
+    flex: 1;
+}
+
+.component-row img {
+    width: 34%;
+    height: 15vh;
+    object-fit: contain;
+}
+
+.component-row p {
+    color: var(--muted);
+    font-size: .85em;
+}
+
+.bom-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1vw;
+}
+
+.bom-summary .panel {
+    padding: 1.3vw;
+}
+
+.bom-summary .metric {
+    font-size: 2.3em;
+}
+
+.roadmap {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.roadmap-item {
+    display: grid;
+    grid-template-columns: .35fr 4fr 1.3fr;
+    align-items: center;
+    gap: 1.4vw;
+    padding: 1.2vh 1.3vw;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+}
+
+.roadmap-number {
+    font-size: 1.7em;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.roadmap-item h3 {
+    font-size: 1.15em;
+    margin: 0;
+}
+
+.roadmap-item p {
+    font-size: .85em;
+    color: var(--muted);
+}
+
+.roadmap-item .label {
+    text-align: right;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    height: 62vh;
+}
+
+.video-container video {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    background: #000;
+}
+
+.bom-table-wrap {
+    overflow: auto;
+    max-height: 69vh;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.bom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .75em;
+}
+
+.bom-table th, .bom-table td {
+    padding: .8vh 1vw;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.bom-table th {
+    color: var(--accent);
+    background: #22372a;
+    position: sticky;
+    top: 0;
+}
+
+.bom-table tbody tr:nth-child(even) {
+    background: var(--panel);
+}
+
+.bom-table tfoot {
+    font-weight: 700;
+    color: var(--accent);
+    background: #294132;
+}
+
+.bom-table td:last-child,
+.bom-table th:last-child {
+    text-align: right;
+}
+
+.references {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+
+.references > div {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.1vh;
+}
+
+.references h3 {
+    font-size: 1em;
+}
+
+.references p {
+    color: var(--muted);
+    font-size: .85em;
+}
+
+.references a {
+    font-size: .7em;
+    color: var(--accent);
+    overflow-wrap: anywhere;
+}
+
+.notes {
+    display: none;
+}
+
+.controls {
+    position: fixed;
+    bottom: 2vh;
+    right: 3vw;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    z-index: 20;
+    background: rgba(16,27,20,.94);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.controls button, .overlay button,
+.notes-header button {
+    color: var(--white);
+    background: transparent;
+    border: 0;
+    padding: 7px 11px;
+    border-radius: 4px;
+}
+
+.controls button:hover,
+.overlay button:hover,
+.notes-header button:hover {
+    background: var(--panel-light);
+    color: var(--accent);
+}
+
+#slide-counter {
+    color: var(--muted);
+    font-size: 12px;
+    padding: 0 6px;
+    font-variant-numeric: tabular-nums;
+}
+
+#progress {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: var(--accent);
+    transition: width .25s ease;
+    z-index: 21;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: #101b14;
+    z-index: 40;
+    overflow: auto;
+    padding: 4vh 5vw;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.overlay-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3vh;
+}
+
+.overlay-header h2 {
+    font-size: 2em;
+}
+
+#overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1vw;
+}
+
+.overview-card {
+    min-height: 14vh;
+    text-align: left;
+    background: var(--panel) !important;
+    border: 1px solid var(--border) !important;
+    padding: 1.2vw !important;
+}
+
+.overview-card.current {
+    border-color: var(--accent) !important;
+}
+
+.overview-card small {
+    display: block;
+    color: var(--accent);
+    margin-bottom: 1vh;
+}
+
+#speaker-notes {
+    position: fixed;
+    left: 3vw;
+    bottom: 3vh;
+    width: min(650px, 65vw);
+    max-height: 45vh;
+    overflow: auto;
+    background: #f5f7f2;
+    color: #17251b;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 50px #0007;
+    z-index: 50;
+    font-size: 16px;
+}
+
+.notes-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.notes-header button {
+    color: #17251b;
+}
+
+@media (max-width: 800px) {
+    .slide {
+        justify-content: flex-start;
+        padding-top: 5vh;
+    }
+
+    .two, .three, .four {
+        grid-template-columns: 1fr;
+    }
+
+    .panel {
+        padding: 16px;
+    }
+
+    .cover {
+        justify-content: center;
+    }
+
+    #overview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .slide.active {
+        animation: none;
+    }
+}
+
+@page {
+    size: 13.333in 7.5in;
+    margin: 0;
+}
+
+@media print {
+    html, body, #deck {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+    }
+
+    body {
+        font-size: 16px;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .slide, .slide.active {
+        position: relative;
+        display: flex !important;
+        width: 13.333in;
+        height: 7.5in;
+        padding: .35in .6in;
+        break-after: page;
+        overflow: hidden;
+        animation: none;
+    }
+
+    .controls, #progress, .overlay,
+    #speaker-notes {
+        display: none !important;
+    }
+
+    h2 {
+        font-size: 42px;
+    }
+
+    .metric {
+        font-size: 48px;
+    }
+
+    .cover-bottom {
+        bottom: .4in;
+    }
+
+    .bom-table-wrap {
+        max-height: none;
+    }
+}
+
+/* =========================================
+   FOUNDER SLIDE
+   ========================================= */
+
+.founder-layout {
+    display: grid;
+    grid-template-columns: .85fr 1.65fr;
+    align-items: center;
+    gap: 4vw;
+    width: 100%;
+}
+
+.founder-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.founder-photo img {
+    width: 100%;
+    height: 65vh;
+    max-width: 440px;
+    object-fit: cover;
+    object-position: center 25%;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.founder-information {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vh;
+}
+
+.founder-information h2 {
+    font-size: clamp(38px, 5vw, 90px);
+    margin-bottom: 0;
+}
+
+.founder-degree {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--white);
+}
+
+.founder-university {
+    color: var(--accent);
+    font-size: 1.05em;
+}
+
+.founder-description {
+    color: var(--muted);
+    max-width: 36em;
+    font-size: 1em;
+    margin: 1vh 0;
+}
+
+.founder-experience-label {
+    color: var(--accent);
+    font-size: .75em;
+    font-weight: 700;
+    letter-spacing: .15em;
+    margin-top: 1.5vh;
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2vw;
+}
+
+.experience-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.4vw;
+    min-width: 0;
+}
+
+.company-logo {
+    height: 10vh;
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 1vw;
+    margin-bottom: 1.8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.company-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.experience-card h3 {
+    font-size: 1.2em;
+    margin-bottom: .6vh;
+}
+
+.experience-card p {
+    font-size: .85em;
+    color: var(--muted);
+}
+
+.experience-date {
+    display: block;
+    color: var(--accent);
+    font-size: .75em;
+    margin-top: 1.2vh;
+}
+
+.founder-website {
+    color: var(--muted);
+    font-size: .8em;
+    margin-top: 1vh;
+}
+
+
+/* =========================================
+   PROTOTYPE VIDEO
+   ========================================= */
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 44vh;
+    min-height: 0;
+}
+
+.video-container video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    background: #101b14;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.assembly-details .panel {
+    padding: 1.2vw;
+}
+
+.assembly-details h3 {
+    font-size: 1.05em;
+}
+
+.assembly-details p {
+    font-size: .85em;
+}
+
+.print-video-replacement {
+    display: none;
+}
+
+
+/* =========================================
+   RESPONSIVE FOUNDER LAYOUT
+   ========================================= */
+
+@media screen and (max-width: 800px) {
+
+    .founder-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .founder-photo img {
+        height: 35vh;
+        width: auto;
+        max-width: 100%;
+    }
+
+    .experience-card {
+        padding: 16px;
+    }
+
+    .company-logo {
+        padding: 12px;
+    }
+
+    .video-container {
+        height: 35vh;
+    }
+
+}
+
+
+/* =========================================
+   PDF EXPORT
+   ========================================= */
+
+@media print {
+
+    .founder-layout {
+        grid-template-columns: .85fr 1.65fr;
+        gap: .4in;
+    }
+
+    .founder-photo img {
+        height: 5.5in;
+        max-width: 3.7in;
+    }
+
+    .founder-information h2 {
+        font-size: 52px;
+    }
+
+    .founder-degree {
+        font-size: 21px;
+    }
+
+    .founder-description {
+        font-size: 16px;
+    }
+
+    .experience-card {
+        padding: .15in;
+    }
+
+    .company-logo {
+        height: .75in;
+        padding: .1in;
+    }
+
+    .video-container {
+        display: none !important;
+    }
+
+    .print-video-replacement {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 3.6in;
+    }
+
+    .print-video-replacement img {
+        width: 85%;
+        height: 3.2in;
+        object-fit: contain;
+    }
+
+    .assembly-details {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .slide:last-child {
+        break-after: auto;
+    }
+
+}
+
+/* =========================================
+   FUTURE PRODUCT VISION
+   ========================================= */
+
+.mat-visual {
+    margin: 2vh 0;
+    padding: 1.2vw;
+    background: rgba(0, 0, 0, .16);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.prototype-mat,
+.future-mat {
+    position: relative;
+    width: 100%;
+    height: 13vh;
+    min-height: 70px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.prototype-mat {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    background: #101b14;
+    border: 2px solid #52794b;
+}
+
+.prototype-panel {
+    background: linear-gradient(
+        135deg,
+        #35533a,
+        #294132
+    );
+}
+
+.fixed-sensor-zone {
+    position: absolute;
+    width: 26%;
+    height: 68%;
+    left: 37%;
+    top: 16%;
+    border: 2px dashed var(--accent);
+    border-radius: 4px;
+    background: rgba(168, 213, 142, .13);
+}
+
+.prototype-ball,
+.future-ball {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #f5f7f2;
+    box-shadow: 0 2px 6px #0006;
+    z-index: 2;
+}
+
+.prototype-ball {
+    left: calc(50% - 6.5px);
+    top: calc(50% - 6.5px);
+}
+
+.future-mat {
+    background: linear-gradient(
+        135deg,
+        #365d32,
+        #52794b
+    );
+    border: 2px solid var(--accent);
+}
+
+.sensor-mesh {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(168, 213, 142, .32) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(168, 213, 142, .32) 1px,
+            transparent 1px
+        );
+
+    background-size: 18px 18px;
+}
+
+.ball-one {
+    left: 12%;
+    top: 25%;
+}
+
+.ball-two {
+    left: 29%;
+    top: 65%;
+}
+
+.ball-three {
+    left: 49%;
+    top: 40%;
+}
+
+.ball-four {
+    left: 70%;
+    top: 70%;
+}
+
+.ball-five {
+    left: 86%;
+    top: 20%;
+}
+
+.vision-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1.2vh 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    font-size: .88em;
+    line-height: 1.4;
+}
+
+.vision-feature:last-child {
+    border-bottom: none;
+}
+
+.vision-feature span {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: .8em;
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   VIRTUAL SIMULATOR CONCEPT
+   ========================================= */
+
+.simulator-layout {
+    grid-template-columns: .9fr 1.1fr;
+    align-items: center;
+    gap: 2.5vw;
+}
+
+.simulator-information {
+    display: flex;
+    flex-direction: column;
+    gap: .5vh;
+}
+
+.simulator-information .lead {
+    font-size: 1.15em;
+    margin-bottom: 1vh;
+}
+
+.simulator-information .feature-line {
+    line-height: 1.4;
+    align-items: flex-start;
+}
+
+.simulator-information .pill {
+    align-self: flex-start;
+}
+
+.simulator-screen {
+    border: 1px solid #58794f;
+    border-radius: 12px;
+    background: #101b14;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+}
+
+.simulator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 1.3vh 1.2vw;
+    background: #19291f;
+    border-bottom: 1px solid var(--border);
+}
+
+.simulator-header strong {
+    font-size: .85em;
+    letter-spacing: .1em;
+}
+
+.simulator-header strong span {
+    color: var(--accent);
+}
+
+.simulator-header small {
+    font-size: .6em;
+    letter-spacing: .12em;
+}
+
+.virtual-green {
+    position: relative;
+    width: 100%;
+    background: #203b28;
+}
+
+.green-illustration {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.green-name {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 7px 10px;
+    border-radius: 4px;
+    background: rgba(16, 27, 20, .75);
+    color: #f5f7f2;
+    font-size: .55em;
+    letter-spacing: .12em;
+}
+
+.simulator-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+}
+
+.simulator-metrics > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1.5vh .4vw;
+    background: #19291f;
+    gap: 7px;
+}
+
+.simulator-metrics small {
+    font-size: .48em;
+    letter-spacing: .07em;
+    color: var(--muted);
+}
+
+.simulator-metrics strong {
+    color: var(--accent);
+    font-size: 1.15em;
+    white-space: nowrap;
+}
+
+.simulator-footer {
+    text-align: center;
+    padding: 9px;
+    font-size: .6em;
+    color: var(--muted);
+}
+
+.simulator-process {
+    margin-top: 1vh;
+}
+
+.simulator-process span {
+    font-size: .9em;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media screen and (max-width: 800px) {
+
+    .simulator-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .simulator-screen {
+        width: 100%;
+    }
+
+    .simulator-header {
+        padding: 12px;
+    }
+
+    .simulator-metrics > div {
+        padding: 12px 5px;
+    }
+
+    .simulator-metrics small {
+        font-size: 8px;
+    }
+
+    .mat-visual {
+        padding: 12px;
+    }
+
+    .simulator-process {
+        flex-wrap: wrap;
+    }
+
+}
+
+
+/* =========================================
+   FUTURE VISION PDF EXPORT
+   ========================================= */
+
+@media print {
+
+    .prototype-mat,
+    .future-mat {
+        height: 1in;
+    }
+
+    .mat-visual {
+        margin: .12in 0;
+        padding: .12in;
+    }
+
+    .vision-feature {
+        padding: .08in 0;
+        font-size: 15px;
+    }
+
+    .simulator-layout {
+        grid-template-columns: .9fr 1.1fr;
+        gap: .3in;
+    }
+
+    .simulator-screen {
+        box-shadow: none;
+    }
+
+    .simulator-header {
+        padding: .12in;
+    }
+
+    .simulator-metrics > div {
+        padding: .12in .04in;
+    }
+
+    .simulator-metrics small {
+        font-size: 8px;
+    }
+
+    .simulator-metrics strong {
+        font-size: 19px;
+    }
+
+    .simulator-information .feature-line {
+        padding: .1in 0;
+    }
+
+    .simulator-process {
+        margin-top: .1in;
+    }
+
+}
+
+/* Remove founder headshot border */
+
+.founder-photo,
+.founder-photo img {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+
+/* =========================================
+   SIMULATOR VISION — FINAL LAYOUT
+   ========================================= */
+
+.simulator-vision-slide {
+    justify-content: center;
+    gap: 1.5vh;
+}
+
+/* Match the other presentation titles */
+
+.simulator-vision-slide h2 {
+    font-size: clamp(32px, 3.8vw, 74px);
+    line-height: 1.08;
+    margin-top: 0;
+    margin-bottom: 1vh;
+}
+
+/* Maintain consistent section heading */
+
+.simulator-vision-slide .eyebrow {
+    flex-shrink: 0;
+    margin-bottom: .5vh;
+}
+
+/* Balance the text and simulator graphic */
+
+.simulator-vision-slide .simulator-layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2.5vw;
+    min-height: 0;
+}
+
+/* Reduce the simulator graphic height */
+
+.simulator-vision-slide .simulator-screen {
+    width: 100%;
+    max-width: 100%;
+    align-self: center;
+}
+
+.simulator-vision-slide .green-illustration {
+    display: block;
+    width: 100%;
+    height: 34vh;
+    max-height: 34vh;
+}
+
+/* Compact the simulator header */
+
+.simulator-vision-slide .simulator-header {
+    padding: 1vh 1vw;
+}
+
+/* Compact the feature descriptions */
+
+.simulator-vision-slide .simulator-information {
+    gap: .4vh;
+}
+
+.simulator-vision-slide .simulator-information .lead {
+    font-size: 1.05em;
+    line-height: 1.45;
+    margin-bottom: .8vh;
+}
+
+.simulator-vision-slide .feature-line {
+    padding: 1.15vh 0;
+    font-size: .95em;
+    line-height: 1.35;
+}
+
+/* Keep the metrics readable */
+
+.simulator-vision-slide .simulator-metrics > div {
+    padding: 1.1vh .4vw;
+    gap: 5px;
+}
+
+.simulator-vision-slide .simulator-metrics strong {
+    font-size: 1.1em;
+}
+
+.simulator-vision-slide .simulator-footer {
+    padding: 6px;
+}
+
+/* Compact the process diagram */
+
+.simulator-vision-slide .simulator-process {
+    margin-top: .8vh;
+    padding: 1.4vh 1.5vw;
+    flex-shrink: 0;
+}
+
+.simulator-vision-slide .simulator-process span {
+    font-size: .85em;
+}
+
+/* Keep the source inside the slide */
+
+.simulator-vision-slide .source {
+    margin-top: .5vh;
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   MOBILE LAYOUT
+   ========================================= */
+
+@media screen and (max-width: 800px) {
+
+    .simulator-vision-slide {
+        justify-content: flex-start;
+    }
+
+    .simulator-vision-slide .simulator-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .simulator-vision-slide .green-illustration {
+        height: auto;
+        max-height: none;
+    }
+
+}
+
+
+/* =========================================
+   PDF EXPORT
+   ========================================= */
+
+@media print {
+
+    .simulator-vision-slide h2 {
+        font-size: 48px;
+    }
+
+    .simulator-vision-slide .simulator-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .simulator-vision-slide .green-illustration {
+        height: 2.65in;
+        max-height: 2.65in;
+    }
+
+    .simulator-vision-slide .feature-line {
+        padding: .09in 0;
+    }
+
+    .simulator-vision-slide .simulator-process {
+        padding: .12in;
+    }
+
+}
+
+/* =========================================
+   COMPACT SLIDE FORMATTING
+   Bottom-Up Market, Unit Economics,
+   and Technical Feasibility
+   ========================================= */
+
+.slide.compact-slide {
+    padding-top: 24px;
+    padding-bottom: 76px;
+    gap: 12px;
+    justify-content: flex-start;
+    box-sizing: border-box;
+}
+
+.compact-slide .eyebrow {
+    flex-shrink: 0;
+}
+
+.compact-slide h1,
+.compact-slide h2 {
+    flex-shrink: 0;
+}
+
+.compact-slide .grid {
+    gap: 16px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.compact-slide .panel {
+    padding: 20px 24px;
+    min-height: 0;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.compact-slide .label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.compact-slide .metric {
+    font-size: clamp(32px, 4vw, 64px);
+    line-height: 1;
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+.compact-slide h3 {
+    font-size: clamp(18px, 1.65vw, 26px);
+    line-height: 1.15;
+    margin-top: 6px;
+    margin-bottom: 8px;
+}
+
+.compact-slide p {
+    font-size: clamp(14px, 1.15vw, 18px);
+    line-height: 1.4;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.compact-slide .panel li {
+    font-size: clamp(13px, 1.1vw, 17px);
+    line-height: 1.35;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.compact-slide .finance-row,
+.compact-slide .test-row {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 16px;
+}
+
+.compact-slide .statement,
+.compact-slide .statement.small {
+    font-size: clamp(17px, 1.6vw, 25px);
+    line-height: 1.3;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.compact-slide .source {
+    font-size: 11px;
+    line-height: 1.3;
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+/* Additional adjustments for shorter displays */
+
+@media (max-height: 850px) {
+
+    .slide.compact-slide {
+        padding-top: 18px;
+        gap: 10px;
+    }
+
+    .compact-slide .panel {
+        padding: 16px 20px;
+    }
+
+    .compact-slide .metric {
+        font-size: clamp(30px, 3.5vw, 54px);
+    }
+
+    .compact-slide .grid {
+        gap: 12px;
+    }
+
+    .compact-slide h1,
+    .compact-slide h2 {
+        margin-bottom: 12px;
+    }
+
+    .compact-slide .statement {
+        margin-top: 8px;
+    }
+}
+
+/* Vertically center all three compact slides */
+
+.slide.compact-slide[data-title="Bottom-Up Market"],
+.slide.compact-slide[data-title="Unit Economics"],
+.slide.compact-slide[data-title="Can We Build It"] {
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+/* =========================================
+   ENGINEERING CAD ANNOTATIONS
+   ========================================= */
+
+.engineering-annotated {
+    position: relative;
+}
+
+.engineering-annotated .engineering-leaders {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.engineering-leaders polyline {
+    fill: none;
+    stroke: #b4d79a;
+    stroke-width: 1.2;
+    vector-effect: non-scaling-stroke;
+    stroke-linejoin: round;
+}
+
+.engineering-leaders circle {
+    fill: #b4d79a;
+}
+
+.engineering-annotated .engineering-label {
+    position: absolute;
+    z-index: 3;
+    white-space: nowrap;
+}
+
+.engineering-annotated .top-left {
+    top: 18.33%;
+    left: 26%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-100%, -50%);
+}
+
+.engineering-annotated .bottom-left {
+    top: 81.67%;
+    left: 26%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-100%, -50%);
+}
+
+.engineering-annotated .top-right {
+    top: 18.33%;
+    left: 74%;
+    right: auto;
+    bottom: auto;
+    transform: translateY(-50%);
+}
+
+.engineering-annotated .bottom-right {
+    top: 81.67%;
+    left: 74%;
+    right: auto;
+    bottom: auto;
+    transform: translateY(-50%);
+}
+
+/* Fix Bottom-Up Market slide overflow */
+.slide[data-title="Bottom-Up Market"] {
+    justify-content: safe center !important;
+    gap: 8px !important;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.slide[data-title="Bottom-Up Market"] .eyebrow {
+    flex-shrink: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 6px !important;
+}
+
+.slide[data-title="Bottom-Up Market"] h2 {
+    flex-shrink: 0 !important;
+    margin-bottom: 8px !important;
+}
